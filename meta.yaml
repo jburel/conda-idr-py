@@ -1,0 +1,48 @@
+{% set name = "idr-py" %}
+{% set version = "0.4.0.dev2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}{{ environ.get('VERSION_SUFFIX', '') }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: ea2c9bc532c14f10d1b5c47edbd8784063513e67c10ae4c67232ed110f27d553
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  script_env:
+    - VERSION_SUFFIX
+
+requirements:
+  host:
+    - pip
+    - python =3
+  run:
+    - python =3
+    - omero-py >=5.6.dev5
+
+test:
+  imports:
+    - idr
+    - idr.attributes
+    - idr.connections
+    - idr.externalDBs
+    - idr.images
+    - idr.visualizations
+    - idr.widgets
+    - idr.connection
+
+about:
+  home: https://idr.openmicroscopy.org/
+  license: GNU General Public v2 or later (GPLv2+)
+  license_family: GPL2
+  summary: Library with helper methods for accessing the Image Data Resource (IDR).
+  doc_url: https://idr.openmicroscopy.org/about/api.html
+  dev_url: https://github.com/IDR/idr-py
+
+extra:
+  recipe-maintainers:
+    - ome
