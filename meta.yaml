@@ -1,5 +1,5 @@
 {% set name = "idr-py" %}
-{% set version = "0.4.0.dev2" %}
+{% set version = "0.4.0.dev3" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ea2c9bc532c14f10d1b5c47edbd8784063513e67c10ae4c67232ed110f27d553
+  sha256: 88e05f47c054c44c03fff6c8f78d0f313f206cb28bc6348f27c6b1ef36a8d395
 
 build:
   noarch: python
@@ -22,7 +22,14 @@ requirements:
     - python =3
   run:
     - python =3
-    - omero-py >=5.6.dev5
+    - omero-py
+    - ipython
+    - ipywidgets
+    - matplotlib
+    - numpy
+    - pandas
+    - requests
+    - seaborn
 
 test:
   imports:
@@ -33,7 +40,6 @@ test:
     - idr.images
     - idr.visualizations
     - idr.widgets
-    - idr.connection
 
 about:
   home: https://idr.openmicroscopy.org/
