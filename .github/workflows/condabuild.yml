@@ -53,7 +53,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          path: "${{ steps.condablddir.outputs.condabld }}/*-64/omero-py-*"
+          path: "${{ steps.condablddir.outputs.condabld }}/*-64/idr-py-*"
           if-no-files-found: error
   upload:
     needs: build
@@ -73,7 +73,7 @@ jobs:
       - name: Upload to Anaconda Cloud
         run: |
           anaconda whoami
-          for f in artifact/*/omero-py*; do
+          for f in artifact/*/idr-py*; do
             anaconda upload --user ${ANACONDA_USER} $f
           done
         env:
