@@ -10,8 +10,8 @@ source:
   sha256: e355a7636e5f6883d19955dd3d3edfc4de263040796fad593f4676e49e8a413c
 
 build:
-  noarch: python
-  number: 0
+  # noarch: python
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
   script_env:
     - VERSION_SUFFIX
@@ -19,9 +19,9 @@ build:
 requirements:
   host:
     - pip
-    - python =3
+    - python
   run:
-    - python =3
+    - python
     - omero-py
     - ipython
     - ipywidgets
