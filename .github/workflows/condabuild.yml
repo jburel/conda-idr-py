@@ -50,11 +50,12 @@ jobs:
       - name: List outputs
         run: |
           ls -R "${{ steps.condablddir.outputs.condabld }}"
-      - name: Upload artifacts
+      - name: Upload noarch
         uses: actions/upload-artifact@v2
         with:
-          path: "${{ steps.condablddir.outputs.condabld }}/*-64/idr-py-*"
+          path: "${{ steps.condablddir.outputs.condabld }}/noarch/idr-py-*"
           if-no-files-found: error
+        if: startsWith(matrix.os, 'ubuntu')
   upload:
     needs: build
     if: startsWith(github.ref, 'refs/tags')
@@ -73,7 +74,7 @@ jobs:
       - name: Upload to Anaconda Cloud
         run: |
           anaconda whoami
-          for f in artifact/*/idr-py*; do
+          for f in artifact/idr-py*; do
             anaconda upload --user ${ANACONDA_USER} $f
           done
         env:
