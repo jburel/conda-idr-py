@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     env:
-      channel:  idr
+      channel:  ome
     steps:
       - name: setup-conda
         uses: s-weigand/setup-conda@v1.0.5
